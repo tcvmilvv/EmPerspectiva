@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vamos olhar para isso com calma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="topbar">
+    <button id="btnBack" class="link-btn" hidden>&larr; voltar</button>
+    <span class="topbar-spacer"></span>
+    <button id="btnRestart" class="link-btn" hidden>reiniciar</button>
+  </header>
+
+  <main class="stage">
+
+    <!-- HOME -->
+    <section class="screen" id="screen-home" data-active="true">
+      <p class="eyebrow">um espaço para pensar</p>
+      <h1 class="handwritten">Vamos olhar para isso<br>com calma.</h1>
+      <p class="body-text">
+        Nem toda preocupação precisa ser resolvida da mesma forma.
+        Responda a algumas perguntas e vamos descobrir juntos
+        o que essa preocupação está pedindo de você agora.
+      </p>
+      <button class="btn-primary" id="btnStart">Começar</button>
+    </section>
+
+    <!-- QUESTION TEMPLATE (rendered dynamically) -->
+    <section class="screen" id="screen-question">
+      <p class="progress" id="progressLabel"></p>
+      <h2 class="handwritten question-title" id="questionTitle"></h2>
+      <p class="body-text" id="questionHelper"></p>
+      <div class="answers" id="answersList"></div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="screen-result">
+      <p class="eyebrow" id="resultEyebrow">agora ficou mais claro</p>
+      <div class="result-card" id="resultCard">
+        <div class="result-icon" id="resultIcon"></div>
+        <h2 class="handwritten result-title" id="resultTitle"></h2>
+        <p class="body-text result-desc" id="resultDesc"></p>
+      </div>
+      <button class="btn-primary" id="btnAnother">Pensar em outra coisa</button>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p>Isso não é um diário. Nada aqui é salvo — cada reflexão vale só para o momento.</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
