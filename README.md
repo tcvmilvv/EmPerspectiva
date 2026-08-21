@@ -28,19 +28,36 @@ worry-guide/
 └── script.js    → árvore de decisão e máquina de estados
 ```
 
-## Ajustando o fluxo de perguntas
+## O fluxo de perguntas
 
-Toda a lógica de decisão vive em `script.js`, no objeto `questions`. Cada
-pergunta é um nó com um `text`, um `helper` opcional e uma lista de
-`answers`. Cada resposta aponta para o próximo nó (`next: "id_do_no"`) ou
-para um resultado final (`next: "outcome:aja"`, por exemplo).
+Toda a lógica vive em `script.js`, no objeto `nodes`. Cada nó tem um
+`kind`:
 
-Os seis resultados possíveis vivem no objeto `outcomes`: **Aja agora**,
-**Planeje**, **Investigue**, **Prepare-se**, **Aguarde** e **Deixe ir**.
-Para mudar o texto ou o ícone de um resultado, edite o objeto correspondente.
+- **`choice`** — pergunta com opções em cartão (com `title` e, opcionalmente,
+  `subtitle`). Cada opção aponta para o próximo nó via `next: "id_do_no"`.
+- **`text`** — um ou mais campos de texto livre (`inputs`), com um botão
+  "Continuar" que leva ao próximo nó. As respostas ficam guardadas em
+  memória (`session`) e podem ser reaproveitadas depois (por exemplo, o
+  "próximo passo" digitado aparece de volta na tela de resultado "Fazer
+  agora").
+- **`terminal`** — tela final de um caminho, com texto de fechamento e
+  botões (normalmente "Voltar ao início").
 
-Para adicionar uma pergunta nova, basta criar um novo nó em `questions` e
-apontar alguma resposta existente para o `id` dele.
+O fluxo segue o roteiro tela a tela: identificar a situação → (separar fato
+de suposição, se for algo acontecendo agora) → peso/impacto → urgência →
+controle → existe uma ação possível → resultado. Os quatro resultados
+possíveis são **Fazer agora**, **Planeje**, **Aguarde** e **Deixe ir** (este
+último passando por "não há ação" antes).
+
+**Nota:** apenas o ramo "Algo está acontecendo agora" tinha todas as telas
+detalhadas na conversa original. Os ramos "pode acontecer no futuro",
+"preciso tomar uma decisão", "aconteceu e ainda penso nisso" e "não sei
+exatamente" foram encaixados na mesma sequência de peso/urgência/controle/
+ação por consistência — vale revisar se esse encaixe faz sentido ou se cada
+um merece uma tela de entrada própria.
+
+Para adicionar uma pergunta nova, crie um novo nó em `nodes` e aponte
+alguma resposta existente (`next`) para o `id` dele.
 
 ## Ajustando a identidade visual
 
